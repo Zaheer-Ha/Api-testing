@@ -40,7 +40,7 @@ export default function App() {
         getQuote
       </button>
 
-      <h1 style={{ background: '#484443', color: '#f1f1f1' }}>{text}</h1>
+      <h1 style={{ background: '#484443', color: '#484443' }}>{text}</h1>
 
       <button
         onClick={getChange}
