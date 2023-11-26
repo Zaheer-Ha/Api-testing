@@ -13,7 +13,7 @@ export default function App() {
   function getChange() {
     let newText = '';
 
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i <= 69 ; i++) {
       setTimeout(async () => {
         const timestamp = Date.now(); // Unique timestamp for each request
         const res = await fetch(`https://api.adviceslip.com/advice?timestamp=${timestamp}`);
