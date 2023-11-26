@@ -20,7 +20,7 @@ export default function App() {
         const data = await res.json();
         newText += data.slip.advice + '\n';
         setText(newText);
-      }, i * 1000); // Delay of i seconds (1000 milliseconds) before each iteration
+      }, i * 800); // Delay of i seconds (1000 milliseconds) before each iteration
     }
   }
 
