@@ -1,4 +1,4 @@
 
 ## Available Scripts
 
-69 Varites of API
+69 Varites of Advice
