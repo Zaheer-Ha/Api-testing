@@ -10,17 +10,18 @@ export default function App() {
     setAdvice(data.slip.advice);
   }
 
-  async function getChange() {
+  function getChange() {
     let newText = '';
 
     for (let i = 0; i < 10; i++) {
-      const timestamp = Date.now(); // Unique timestamp for each request
-      const res = await fetch(`https://api.adviceslip.com/advice?timestamp=${timestamp}`);
-      const data = await res.json();
-      newText += data.slip.advice + '\n';
+      setTimeout(async () => {
+        const timestamp = Date.now(); // Unique timestamp for each request
+        const res = await fetch(`https://api.adviceslip.com/advice?timestamp=${timestamp}`);
+        const data = await res.json();
+        newText += data.slip.advice + '\n';
+        setText(newText);
+      }, i * 1000); // Delay of i seconds (1000 milliseconds) before each iteration
     }
-
-    setText(newText);
   }
 
   return (
@@ -30,7 +31,7 @@ export default function App() {
       <button
         onClick={getQuote}
         style={{
-          margin: '30px',
+          margin: '100px 250px',
           height: '100px',
           width: '1000px',
           background: 'lightblue'
@@ -44,9 +45,11 @@ export default function App() {
       <button
         onClick={getChange}
         style={{
-          margin: '30px',
+          margin: '50px 500px',
+          alignleft:'300px',
+          flex: 'Auto',
           height: '100px',
-          width: '1000px',
+          width: '500px',
           background: '1d232d'
         }}
       >
