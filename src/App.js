@@ -18,17 +18,17 @@ export default function App() {
   }
   
   function getChange() {
-    const interval = setInterval(async () => {
-      const timestamp = Date.now(); // Unique timestamp for each request
-      const res = await fetch(`https://api.adviceslip.com/advice?timestamp=${timestamp}`);
-      const data = await res.json();
-      setText(prevText => prevText + data.slip.advice + '\n');
-    }, 800);
+    let newText = '';
 
-    // Stop the interval after a certain duration (in this case, 70 * 800 milliseconds)
-    setTimeout(() => {
-      clearInterval(interval);
-    }, 70 * 800);
+    for (let i = 0; i <= 69 ; i++) {
+      setTimeout(async () => {
+        const timestamp = Date.now(); // Unique timestamp for each request
+        const res = await fetch(`https://api.adviceslip.com/advice?timestamp=${timestamp}`);
+        const data = await res.json();
+        newText += data.slip.advice + '\n';
+        setText(newText);
+      }, i * 800); // Delay of i seconds (1000 milliseconds) before each iteration
+    }
   }
 
   return (
