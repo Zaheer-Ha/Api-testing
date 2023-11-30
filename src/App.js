@@ -10,50 +10,67 @@ export default function App() {
     setAdvice(data.slip.advice);
   }
 
+  function resetAdvice() {
+    setAdvice('');
+    
+    return setText('');
+  
+  }
+  
   function getChange() {
-    let newText = '';
+    const interval = setInterval(async () => {
+      const timestamp = Date.now(); // Unique timestamp for each request
+      const res = await fetch(`https://api.adviceslip.com/advice?timestamp=${timestamp}`);
+      const data = await res.json();
+      setText(prevText => prevText + data.slip.advice + '\n');
+    }, 800);
 
-    for (let i = 0; i <= 69 ; i++) {
-      setTimeout(async () => {
-        const timestamp = Date.now(); // Unique timestamp for each request
-        const res = await fetch(`https://api.adviceslip.com/advice?timestamp=${timestamp}`);
-        const data = await res.json();
-        newText += data.slip.advice + '\n';
-        setText(newText);
-      }, i * 800); // Delay of i seconds (1000 milliseconds) before each iteration
-    }
+    // Stop the interval after a certain duration (in this case, 70 * 800 milliseconds)
+    setTimeout(() => {
+      clearInterval(interval);
+    }, 70 * 800);
   }
 
   return (
     <div>
-      <h1 style={{ background: 'red' }}>{advice}</h1>
+      
+      <h1 style={{ background: '#484443', color: '#ffffff', padding: '10px'  }}>{advice}</h1>
 
       <button
         onClick={getQuote}
         style={{
-          margin: '100px 250px',
-          height: '100px',
-          width: '1000px',
+          margin: '40px 680px',
+          height: '40px',
+          width: '120px',
           background: 'lightblue'
         }}
       >
-        getQuote
+        Get Quote
       </button>
 
-      <h1 style={{ background: '#484443', color: '#484443' }}>{text}</h1>
+      <h1 style={{ background: '#484443', color: '#ffffff', padding: '10px' }}>{text}</h1>
 
       <button
         onClick={getChange}
         style={{
-          margin: '50px 500px',
-          alignleft:'300px',
-          flex: 'Auto',
-          height: '100px',
-          width: '500px',
-          background: '1d232d'
+          margin: '40px 635px',
+          height: '40px',
+          width: '220px',
+          background: '#1d232d',
+          color: '#ffffff'
         }}
       >
-        Double Quote
+        Infinite Quote
+      </button>
+
+      <button onClick={resetAdvice} style={{
+        margin: '40px 680px',
+        height: '50px',
+        width: '120px',
+        background: '#1d232d',
+        color: 'RED' 
+      }}>
+        Reset
       </button>
     </div>
   );
