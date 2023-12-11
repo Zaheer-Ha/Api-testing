@@ -1,4 +1,4 @@
 ## React + Vite
 ## Available Scripts
 
-69 Varites of Advice
+999 Varities of Advice
